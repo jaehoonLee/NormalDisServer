@@ -106,10 +106,10 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
-    var margin = {top: 20, right: 40, bottom: 30, left: 20},
+    var margin = {top: 20, right: 40, bottom: 30, left: 40},
             width = 1140 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom,
-            barWidth = Math.floor(width / 19) - 1;
+            barWidth = Math.floor(width / 20) - 1;
 
     var x = d3.scale.linear()
             .range([barWidth / 2, width - barWidth / 2]);
@@ -119,8 +119,8 @@
 
     var yAxis = d3.svg.axis()
             .scale(y)
-            .orient("right")
-            .tickSize(-width)
+            .orient("left")
+            .tickSize(width)
             .tickFormat(function (d) {
                 return Math.round(d / 1e6) + "M";
             });
@@ -138,9 +138,10 @@
 
     // A label for the current year.
     var title = svg.append("text")
+            .attr("x", width - 140)
             .attr("class", "title")
             .attr("dy", ".71em")
-            .text(2000);
+            .text(2008);
 
    run();
 
@@ -167,7 +168,7 @@ function run() {
             year = year1;
 
         // Update the scale domains.
-        x.domain([year1 - age1, year1]);
+        x.domain([year1, year1 - age1]);
         y.domain([0, d3.max(data, function (d) {
             return d.people;
         })]);
