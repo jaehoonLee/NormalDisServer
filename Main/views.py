@@ -1,7 +1,30 @@
 from django.shortcuts import *
+from Population import settings
+
+from os import listdir
 
 # Create your views here.
 def main(request):
-    loop = [1, 2, 3]
-    return render_to_response('test.html', RequestContext(request, {'loops' : loop}))
-    #return render_to_response('index.html', RequestContext(request, {'loops' : loop}))
+    #Read File From Folder
+    FolderPath = settings.STATICFILES_DIRS[0] + '/Datas/'
+    print FolderPath
+    CityList = []
+    for file in listdir(FolderPath):
+        CityList.append(file)
+        f = open(FolderPath + file)
+        f.read()
+
+    return render_to_response('index.html', RequestContext(request, {'CityList': CityList}))
+
+def detail(request, citynum):
+    #Read File From Folder
+    FolderPath = settings.STATICFILES_DIRS[0] + '/Datas/'
+    CityList = []
+    for file in listdir(FolderPath):
+        CityList.append(file)
+    filename = listdir(FolderPath)[int(citynum)]
+    DataURL = "http://127.0.0.1:8000" + settings.STATIC_URL + "Datas/" + filename
+    print DataURL
+
+
+    return render_to_response('index.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))

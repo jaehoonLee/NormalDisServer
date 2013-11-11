@@ -9,6 +9,7 @@ from Main.views import *
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', main),
+    url(r'^(\d{1,2})/$', detail),
     # url(r'^Population/', include('Population.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
