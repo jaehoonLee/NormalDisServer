@@ -148,7 +148,7 @@
 
     {#    "static/population.csv"#}
     {#    {{ DataURL }}#}
-    d3.csv('static/population.csv', function (error, data) {
+    d3.csv('{{ DataURL }}', function (error, data) {
 
         // Convert strings to numbers.
         data.forEach(function (d) {
