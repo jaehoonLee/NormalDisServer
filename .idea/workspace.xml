@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25dbc96a-c16d-461a-9958-b51a265157c8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/stackedBar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/views.py" afterPath="$PROJECT_DIR$/Main/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Population.iws" />
@@ -31,21 +33,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="56" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="525">
+            <state line="32" column="47" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.87903225" vertical-offset="108" max-vertical-offset="525">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="25" selection-start="5072" selection-end="5072" vertical-scroll-proportion="0.5164179" vertical-offset="2077" max-vertical-offset="4695">
+            <state line="278" column="97" selection-start="9444" selection-end="9444" vertical-scroll-proportion="-6.4583335" vertical-offset="4015" max-vertical-offset="4695">
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stackedBar.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/stackedBar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="120" column="9" selection-start="3044" selection-end="3044" vertical-scroll-proportion="-13.25" vertical-offset="1482" max-vertical-offset="1890">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="서울" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/Datas/서울">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="20" selection-end="51" vertical-scroll-proportion="101.111115" vertical-offset="2745" max-vertical-offset="3090">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
         </entry>
       </file>
@@ -106,18 +129,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="population.csv" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Files/population.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="14" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="1290">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -144,12 +155,13 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Population/urls.py" />
         <option value="$PROJECT_DIR$/Files/a.csv" />
-        <option value="$PROJECT_DIR$/Main/views.py" />
-        <option value="$PROJECT_DIR$/Files/Datas/서울" />
         <option value="$PROJECT_DIR$/Files/Datas/강남" />
         <option value="$PROJECT_DIR$/Files/populationTest.csv" />
         <option value="$PROJECT_DIR$/Files/population.csv" />
+        <option value="$PROJECT_DIR$/Files/Datas/서울" />
         <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/stackedBar.html" />
+        <option value="$PROJECT_DIR$/Main/views.py" />
       </list>
     </option>
   </component>
@@ -241,6 +253,34 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Population" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NormalDisServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Population" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NormalDisServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Files" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -532,7 +572,11 @@
       <created>1384353940218</created>
       <updated>1384353940218</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="index.html static data source fiel Changed">
+      <created>1384354155640</created>
+      <updated>1384354155640</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -557,7 +601,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="731" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -565,7 +609,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294893" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20097245" sideWeight="0.6923077" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20097245" sideWeight="0.6923077" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31096563" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -589,22 +633,13 @@
     </option>
     <MESSAGE value="add git ignore &#10;serveral changes in html files" />
     <MESSAGE value="D3 javascript code changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="D3 javascript code changed" />
+    <MESSAGE value="index.html static data source fiel Changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="index.html static data source fiel Changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Files/population.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="14" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0" vertical-offset="394" max-vertical-offset="1290">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Population/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="69" selection-start="486" selection-end="486" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
@@ -617,14 +652,6 @@
         <state line="71" column="16" selection-start="2438" selection-end="2454" vertical-scroll-proportion="0.0" vertical-offset="900" max-vertical-offset="2460">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Files/Datas/서울">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="16" selection-start="147" selection-end="153" vertical-scroll-proportion="0.028089888" vertical-offset="105" max-vertical-offset="705" />
-      </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Main/models.py">
@@ -657,13 +684,6 @@
       </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="56" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" vertical-offset="83" max-vertical-offset="480">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -707,9 +727,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Files/Datas/서울">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="20" selection-end="51" vertical-scroll-proportion="101.111115" vertical-offset="2745" max-vertical-offset="3090">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="25" selection-start="5072" selection-end="5072" vertical-scroll-proportion="0.5164179" vertical-offset="2077" max-vertical-offset="4695">
+        <state line="278" column="97" selection-start="9444" selection-end="9444" vertical-scroll-proportion="-6.4583335" vertical-offset="4015" max-vertical-offset="4695">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stackedBar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="9" selection-start="3044" selection-end="3044" vertical-scroll-proportion="-13.25" vertical-offset="1482" max-vertical-offset="1890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="47" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.87903225" vertical-offset="108" max-vertical-offset="525">
           <folding />
         </state>
       </provider>

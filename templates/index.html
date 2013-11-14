@@ -144,7 +144,7 @@
             .attr("x", width - 140)
             .attr("class", "title")
             .attr("dy", ".71em")
-            .text(2008);
+            .text(2012);
 
     {#    "static/population.csv"#}
     {#    {{ DataURL }}#}
@@ -235,7 +235,7 @@
     {#                    return birthyear;#}
     {#                });#}
 
-        var diff = 10;
+        var diff = 1;
         // Add labels to show age (separate; not animated).
         svg.selectAll(".age")
                 .data(d3.range(0, age1 + 1, 5))
@@ -276,7 +276,7 @@
             birthyear.selectAll("rect")
                     .data(function (birthyear) {
 
-                        console.log((year1-year) + " " + (birthyear) + ":" + data[year][birthyear + 1])
+                        console.log((year1-year) + " " + (birthyear) + ":" + data[year][birthyear])
                         return data[year][birthyear] || [0, 0];
                     })
                     .transition()

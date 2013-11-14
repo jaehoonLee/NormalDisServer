@@ -28,3 +28,6 @@ def detail(request, citynum):
 
 
     return render_to_response('index.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
+
+def stackedBar(request):
+    return render_to_response('stackedBar.html', RequestContext(request))
