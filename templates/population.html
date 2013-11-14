@@ -44,15 +44,6 @@
         fill: #1f77b4;
     }
 
-    .population img:hover{
-        background: #cccccc;
-        opacity:0.4;
-        -moz-transition: all .3s linear;
-        -webkit-transition: all .3s linear;
-        -ms-transition: all .3s linear;
-        -o-transition: all .3s linear;
-        transition: all .3s linear;
-    }
 </style>
 <body>
 <!-- Bootstrap core CSS -->
@@ -71,12 +62,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">SWMaestro Project</a>
+             <a class="navbar-brand" href="#">SWMaestro Project</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                {#                <li class="active"><a href="#">Seoul All</a></li>#}
-                {#                <li><a href="#">Seoul Part</a></li>#}
                 {#                <li><a href="#">Link</a></li>#}
                 {#                <li class="dropdown">#}
                 {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
@@ -102,10 +91,9 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <h1>Seoul Population </h1>
+        <h1>Seoul Population</h1>
 
-        <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리 및 시각화 프로젝트</p>
-        <p>팀원 : 이재훈, 황연주, 정택영</p>
+        <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리</p>
 
         <p>
             {% for city in CityList %}
@@ -114,18 +102,7 @@
             {% endfor %}
         </p>
     </div>
-    </br>
-    <div class="row marketing population" style="margin-top: 20px;">
-        <a class="visual" href="/0/" style="margin-left: 50px; width:500px; height: 300px"><img src="/static/visual01.png" class="img-rounded img-responsiv"  style="width:500px; height: 300px; "></a>
-        <a class="visual" href="/heatMap/0/" style="margin-left: 60px; width:500px; height: 300px"><img src="/static/visual02.png" class="img-rounded" style="width:500px; height: 300px;"></a>
-    </div>
-    </br>
-    <div class="row marketing population" style="margin-top: 20px;">
-        <a class="visual" href="http://www.naver.com" style="margin-left: 50px; width:500px; height: 300px"><img src="/static/visual03.png" class="img-rounded img-responsiv"  style="width:500px; height: 300px; "></a>
-        <a class="visual" href="http://www.naver.com" style="margin-left: 60px; width:500px; height: 300px"><img src="/static/visual02.png" class="img-rounded" style="width:500px; height: 300px;"></a>
-    </div>
 </div>
-<<<<<<< HEAD
 <!-- /container -->
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -165,7 +142,7 @@
             .attr("x", width - 140)
             .attr("class", "title")
             .attr("dy", ".71em")
-            .text(2012);
+            .text(2008);
 
     {#    "static/population.csv"#}
     {#    {{ DataURL }}#}
@@ -256,7 +233,7 @@
     {#                    return birthyear;#}
     {#                });#}
 
-        var diff = 1;
+        var diff = 10;
         // Add labels to show age (separate; not animated).
         svg.selectAll(".age")
                 .data(d3.range(0, age1 + 1, 5))
@@ -297,7 +274,7 @@
             birthyear.selectAll("rect")
                     .data(function (birthyear) {
 
-                        console.log((year1-year) + " " + (birthyear) + ":" + data[year][birthyear])
+                        console.log((year1-year) + " " + (birthyear) + ":" + data[year][birthyear + 1])
                         return data[year][birthyear] || [0, 0];
                     })
                     .transition()
@@ -326,6 +303,4 @@
 {#        })#}
     });
 </script>
-=======
->>>>>>> 6b77ff10507e468a1d7448f83b5c89e0a103157f
 <script src="{{ STATIC_URL }}Main.js"></script>
