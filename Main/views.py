@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from django.shortcuts import *
 from Population import settings
 
@@ -14,7 +15,7 @@ def main(request):
         f = open(FolderPath + file)
         f.read()
 
-    return render_to_response('index.html', RequestContext(request, {'CityList': CityList}))
+    return render_to_response('index.html', RequestContext(request))
 
 def detail(request, citynum):
     #Read File From Folder
@@ -27,4 +28,4 @@ def detail(request, citynum):
     print DataURL
 
 
-    return render_to_response('index.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
+    return render_to_response('population.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))

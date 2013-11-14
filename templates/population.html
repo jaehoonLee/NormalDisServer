@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<style>
+    svg {
+        font: 10px sans-serif;
+    }
+
+    .y.axis path {
+        display: none;
+    }
+
+    .y.axis line {
+        stroke: #fff;
+        stroke-opacity: .2;
+        shape-rendering: crispEdges;
+    }
+
+    .y.axis .zero line {
+        stroke: #000;
+        stroke-opacity: 1;
+    }
+
+    .title {
+        font: 300 78px Helvetica Neue;
+        fill: #666;
+    }
+
+    .birthyear,
+    .age {
+        text-anchor: middle;
+    }
+
+    .birthyear {
+        fill: #fff;
+    }
+
+    rect {
+        fill-opacity: .6;
+        fill: #e377c2;
+    }
+
+    rect:first-child {
+        fill: #1f77b4;
+    }
+
+</style>
+<body>
+<!-- Bootstrap core CSS -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ STATIC_URL }}css/bootstrap-theme.min.css" rel="stylesheet">
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+
+<div class="container" id="container">
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Seoul Population</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Seoul All</a></li>
+                <li><a href="#">Seoul Part</a></li>
+                {#                <li><a href="#">Link</a></li>#}
+                {#                <li class="dropdown">#}
+                {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
+                {#                    <ul ㅠclass="dropdown-menu">#}
+                {#                        <li><a href="#">Action</a></li>#}
+                {#                        <li><a href="#">Another action</a></li>#}
+                {#                        <li><a href="#">Something else here</a></li>#}
+                {#                        <li class="divider"></li>#}
+                {#                        <li class="dropdown-header">Nav header</li>#}
+                {#                        <li><a href="#">Separated link</a></li>#}
+                {#                        <li><a href="#">One more separated link</a></li>#}
+                {#                    </ul>#}
+                {#                </li>#}
+            </ul>
+            {#            <ul class="nav navbar-nav navbar-right">#}
+            {#                <li class="active"><a href="./">Default</a></li>#}
+            {#                <li><a href="../navbar-static-top/">Static top</a></li>#}
+            {#                <li><a href="../navbar-fixed-top/">Fixed top</a></li>#}
+            {#            </ul>#}
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Seoul Population</h1>
+
+        <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리</p>
+
+        <p>
+            {% for city in CityList %}
+                <a class="btn btn-lg btn-primary run" id="run" href="/{{forloop.counter0}}">{{city}}</a>
+                {#            <a class="btn btn-lg btn-primary run" id="run" onclick="return run()">{{city}} </a>#}
+            {% endfor %}
+        </p>
+    </div>
+</div>
+<!-- /container -->
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+    var margin = {top: 20, right: 40, bottom: 30, left: 40},
+            width = 1140 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom,
+            barWidth = Math.floor(width / 20) - 1;
+
+    var x = d3.scale.linear()
+            .range([barWidth / 2, width - barWidth / 2]);
+
+    var y = d3.scale.linear()
+            .range([height, 0]);
+
+    var yAxis = d3.svg.axis()
+            .scale(y)
+            .orient("left")
+            .tickSize(width)
+            .tickFormat(function (d) {
+                return Math.round(d / 1e6) + "M";
+            });
+
+    // An SVG element with a bottom-right origin.
+    var svg = d3.select(".container").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // A sliding container to hold the bars by birthyear.
+    var birthyears = svg.append("g")
+            .attr("class", "birthyears");
+
+    // A label for the current year.
+    var title = svg.append("text")
+            .attr("x", width - 140)
+            .attr("class", "title")
+            .attr("dy", ".71em")
+            .text(2008);
+
+    {#    "static/population.csv"#}
+    {#    {{ DataURL }}#}
+    d3.csv('{{ DataURL }}', function (error, data) {
+
+        // Convert strings to numbers.
+        data.forEach(function (d) {
+            d.people = +d.people;
+            d.year = +d.year;
+            d.age = +d.age;
+        });
+
+        // Compute the extent of the data set in age and years.
+        var age1 = d3.max(data, function (d) {
+                    return d.age;
+                }),
+        year0 = d3.min(data, function (d) {
+                    return d.year;
+                }),
+        year1 = d3.max(data, function (d) {
+                    return d.year;
+                }),
+        year = year1;
+
+
+        // Update the scale domains.
+        x.domain([year1, year1 - age1]);
+        y.domain([0, d3.max(data, function (d) {
+            return d.people;
+        })]);
+
+        // Produce a map from year and birthyear to [male, female].
+
+        data = d3.nest()
+                .key(function (d) {
+                    return d.year;
+                })
+                .key(function (d) {
+                    return d.year - d.age;
+                })
+                .rollup(function (v) {
+                    return v.map(function (d) {
+                        return d.people;
+                    });
+                })
+                .map(data);
+
+        // Add an axis to show the population values.
+        svg.append("g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + width + ",0)")
+                .call(yAxis)
+                .selectAll("g")
+                .filter(function (value) {
+                    return !value;
+                })
+                .classed("zero", true);
+
+        // Add labeled rects for each birthyear (so that no enter or exit is required).
+        console.log("a:" + (year0 - age1))
+        console.log("b:" + (year1 + 1))
+        var birthyear = birthyears.selectAll(".birthyear")
+                .data(d3.range(year0 - age1, year1 + 1, 1))//jhun88 : 범위가 10에서 1로 바뀜에 따라, mapping index 값이 안 맞게 되었다. 그래서 1을 넣어주었다.
+                .enter().append("g")
+                .attr("class", "birthyear")
+                .attr("transform", function (birthyear) {
+                    return "translate(" + x(birthyear) + ",0)";
+                });
+
+
+        //set value
+        birthyear.selectAll("rect")
+                .data(function (birthyear) {
+                    return data[year][birthyear] || [0, 0];
+                })
+                .enter().append("rect")
+                .attr("x", -barWidth / 2)
+                .attr("width", barWidth)
+                .attr("y", y)
+                .attr("height", function (value) {
+                    return height - y(value);
+                });
+
+        // Add labels to show birthyear.
+    {#        birthyear.append("text")#}
+    {#                .attr("y", height - 4)#}
+    {#                .text(function (birthyear) {#}
+    {#                    return birthyear;#}
+    {#                });#}
+
+        var diff = 10;
+        // Add labels to show age (separate; not animated).
+        svg.selectAll(".age")
+                .data(d3.range(0, age1 + 1, 5))
+                .enter().append("text")
+                .attr("class", "age")
+                .attr("x", function (age) {
+                    return x(year - age);
+                })
+                .attr("y", height + 4)
+                .attr("dy", ".71em")
+                .text(function (age) {
+                    return age;
+                });
+
+        // Allow the arrow keys to change the displayed year.
+        window.focus();
+        d3.select(window).on("keydown", function () {
+            switch (d3.event.keyCode) {
+                case 37:
+                    year = Math.max(year0, year - diff);
+                    break;
+                case 39:
+                    year = Math.min(year1, year + diff);
+                    break;
+            }
+            update();
+        });
+
+        function update() {
+            if (!(year in data)) return;
+            title.text(year);
+
+            console.log(year1 + " " + year)
+            birthyears.transition()
+                    .duration(750)
+                    .attr("transform", "translate(" + (x(year1) - x(year)) + ",0)");
+
+            birthyear.selectAll("rect")
+                    .data(function (birthyear) {
+
+                        console.log((year1-year) + " " + (birthyear) + ":" + data[year][birthyear + 1])
+                        return data[year][birthyear] || [0, 0];
+                    })
+                    .transition()
+                    .duration(750)
+                    .attr("y", y)
+                    .attr("height", function (value) {
+                        return height - y(value);
+                    });
+        }
+
+{#        d3.select(".run").on("click", function(evt)#}
+{#        {#}
+{#            callback = function()#}
+{#            {#}
+{#                year = Math.max(year0, year - 1);#}
+{#                update();#}
+{#                if(year != 1850)#}
+{#                {#}
+{#                    setTimeout(callback, 2000);#}
+{#                }else#}
+{#                {#}
+{##}
+{#                }#}
+{#            }#}
+{#            setTimeout(callback, 1000);#}
+{#        })#}
+    });
+</script>
+<script src="{{ STATIC_URL }}Main.js"></script>
