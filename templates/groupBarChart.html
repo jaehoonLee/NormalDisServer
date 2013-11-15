@@ -54,8 +54,7 @@
         transition: all .3s linear;
     }
 
-
-    {#stackedBar CSS#}
+    {#    GroupBar css#}
     body {
         font: 10px sans-serif;
     }
@@ -74,6 +73,7 @@
     .x.axis path {
         display: none;
     }
+
 </style>
 <body>
 <!-- Bootstrap core CSS -->
@@ -123,11 +123,11 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <h1>Stacked Bar Chart</h1>
+        <h1>groupBarChart</h1>
         <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리</p>
         <p>
             {% for city in CityList %}
-                <a class="btn btn-lg btn-primary run" id="run" href="/stackedBar/{{forloop.counter0}}">{{city}}</a>
+                <a class="btn btn-lg btn-primary run" id="run" href="/groupBarChart/{{forloop.counter0}}">{{city}}</a>
                 {#            <a class="btn btn-lg btn-primary run" id="run" onclick="return run()">{{city}} </a>#}
             {% endfor %}
         </p>
@@ -136,21 +136,23 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
 
-        var margin = {top: 20, right: 0, bottom: 30, left: 30},
-                width = 1100 ,
-                height = 500;
+        var margin = {top: 20, right: 20, bottom: 30, left: 100},
+                width = 960 ,
+                height = 500 - margin.top - margin.bottom;
 
-        var x = d3.scale.ordinal()
+        var x0 = d3.scale.ordinal()
                 .rangeRoundBands([0, width], .1);
 
+        var x1 = d3.scale.ordinal();
+
         var y = d3.scale.linear()
-                .rangeRound([height, 0]);
+                .range([height, 0]);
 
         var color = d3.scale.ordinal()
                 .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
         var xAxis = d3.svg.axis()
-                .scale(x)
+                .scale(x0)
                 .orient("bottom");
 
         var yAxis = d3.svg.axis()
@@ -164,75 +166,62 @@
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-{#        d3.csv("/static/stackedBar.csv", function(error, data) {#}
-        d3.csv("{{ DataURL }}", function(error, data) {
-
-            ageKey={};
-            yearKey={};
-            yearsKey={};
+{#        d3.csv("/static/groupBar.csv", function(error, data) {#}
+{#                d3.csv("/static/population.csv", function(error, data) {#}
+            d3.csv("{{ DataURL }}", function(error, data) {
+            ageKey={}
+            yearKey={}
             data.forEach(function(d)
             {
                 ageKey[d.age] = d.year;
-                yearsKey[d.year] = d.age
-                yearKey[d.year + ', 남자'] = d.age;
-                yearKey[d.year + ', 여자'] = d.age;
+                yearKey[d.year] = d.age;
 
-                d.age = +d.age
+
                 d.sex = +d.sex;
                 d.people = +d.people;
-
             })
             ageNames = Object.keys(ageKey);
             yearNames = Object.keys(yearKey);
-            years = Object.keys(yearsKey);
 
-            color.domain(ageNames);
 
+{#            var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });#}
             convertData = [];
-            years.forEach(function(year)
+            yearNames.forEach(function(year)
                 {
-                    people1 = {}
-                    people2 = {}
+                    people = []
                     data.forEach(function(d)
                         {
-
-                            if(d.year == year)
-                            {
-{#                                console.log(d.sex + " " + d.age + " " + d.people);#}
-                                if(d.sex == 1)
-                                    people1[d.age] = d.people
-                                else
-                                    people2[d.age] = d.people
-                            }
-
-{#                                        .push({name: d.age, value: d.people});#}
+                            console.log(d.sex);
+                            if(d.year == year && d.sex == 1)
+                                people.push({name: d.age, value: d.people});
                         }
                     );
 
-                    convertData.push({year:year + ', 남자', value:people1})
-                    convertData.push({year:year + ', 여자', value:people2})
+                    convertData.push({year:year, value:people})
                 }
             );
 
-            convertData.forEach(function(d) {
-                var y0 = 0;
-                d.ages = color.domain().map(function(age) {
-                console.log(age + " " + +d.value[age]);
-                return {name: age, y0: y0, y1: y0 += +d.value[age]}; });
-                d.total = d.ages[d.ages.length - 1].y1;
-            });
+
+{#            data.forEach(function(d) {#}
+{#                d.ages = ageNames.map(function(name) {#}
+{#                    console.log(name + " " + d["people"]);#}
+{##}
+{#                    return {name: name, value: 10}; });#}
+{#                convertData.push()#}
+{#            });#}
 
 
-            convertData.sort(function(a, b) { return b.total - a.total; });
-
-            x.domain(yearNames.map(function(d) { return d; }));
-            y.domain([0, d3.max(convertData, function(d) { return d.total; })]);
-
+            x0.domain(data.map(function(d) { return d.year; }));
+            x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+            y.domain([0, d3.max(data, function(d) { return d.people;  })]);
+            console.log(d3.max(data, function(d) {return d.people;  }));
+            //x axis
             svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", "translate(0," + height + ")")
                     .call(xAxis);
 
+            //y axis
             svg.append("g")
                     .attr("class", "y axis")
                     .call(yAxis)
@@ -243,34 +232,30 @@
                     .style("text-anchor", "end")
                     .text("Population");
 
-
-
-
-            //Put Data
             var state = svg.selectAll(".state")
                     .data(convertData)
                     .enter().append("g")
                     .attr("class", "g")
-                    .attr("transform", function(d) { return "translate(" + x(d.year) + ",0)"; });
+                    .attr("transform", function(d) {
+{#                        console.log(d.year); #}
+                        return "translate(" + x0(d.year) + ",0)"; });
 
             state.selectAll("rect")
-                    .data(function(d) { return d.ages; })
+                    .data(function(d) {
+                        console.log(d);
+                        return d.value; })
                     .enter().append("rect")
-                    .attr("width", x.rangeBand() * 2 / 3)
+                    .attr("width", x1.rangeBand())
+                    .attr("x", function(d) {
+                        return x1(d.name); })
                     .attr("y", function(d) {
-                        console.log(d.y1)
-
-                        return y(d.y1); })
-                    .attr("height", function(d) { return y(d.y0) - y(d.y1); })
+{#                        console.log(d.name + " " + d.value);#}
+                        return y(d.value); })
+                    .attr("height", function(d) { return height - y(d.value); })
                     .style("fill", function(d) { return color(d.name); });
 
-
-
-
-
-
             var legend = svg.selectAll(".legend")
-                    .data(color.domain().slice().reverse())
+                    .data(ageNames.slice().reverse())
                     .enter().append("g")
                     .attr("class", "legend")
                     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -289,5 +274,7 @@
                     .text(function(d) { return d; });
 
         });
+
     </script>
+</br>
 </div>

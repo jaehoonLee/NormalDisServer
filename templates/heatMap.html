@@ -76,7 +76,7 @@
 
             <p>
                 {% for city in CityList %}
-                    <a class="btn btn-lg btn-primary run" id="run" href="/{{forloop.counter0}}">{{city}}</a>
+                    <a class="btn btn-lg btn-primary run" id="run" href="/heatMap/{{forloop.counter0}}">{{city}}</a>
                     {#            <a class="btn btn-lg btn-primary run" id="run" onclick="return run()">{{city}} </a>#}
                 {% endfor %}
             </p>
@@ -88,27 +88,45 @@
 
     <script type="text/javascript">
         var margin = { top: 50, right: 0, bottom: 100, left: 170 },
-                width = 960 - margin.left - margin.right,
-                height = 430 - margin.top - margin.bottom,
+                width = 960,
+                height = 430,
                 gridSize = Math.floor(width / 24),
                 legendElementWidth = gridSize*2,
-                buckets = 9,
+                buckets = 100000,
                 colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
-                days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-                times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
+                days = [],
+                ages = ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95"];
 
-
-        d3.tsv("/static/heatMap.tsv",
+                //change to number
+{#        d3.csv("/static/population.csv",#}
+    d3.csv('{{ DataURL }}',
                 function(d) {
                     return {
-                        day: +d.day,
-                        hour: +d.hour,
-                        value: +d.value
+                        year: +d.year,
+                        age: +d.age,
+                        sex: +d.sex,
+                        people: +d.people
                     };
                 },
                 function(error, data) {
+
+                    day1 = {}
+                    minYear = d3.min(data, function(d){
+                        if(d.sex == 1)
+                            day1[d.year + ' 남자'] = d.age;
+                        else
+                            day1[d.year + ' 여자'] = d.age;
+                        return d.year;})
+                    buckets = d3.max(data, function(d){ return d.people}) / 2
+                    console.log(buckets)
+
+                    for(var key in day1)
+                    {
+                        days.push(key)
+                    }
+
                     var colorScale = d3.scale.quantile()
-                            .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+                            .domain([0, buckets - 1, d3.max(data, function (d) { return d.people; })])
                             .range(colors);
 
                     var svg = d3.select("#chart").append("svg")
@@ -117,7 +135,7 @@
                             .append("g")
                             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-                    var dayLabels = svg.selectAll(".dayLabel")
+                    var yearLabels = svg.selectAll(".dayLabel")
                             .data(days)
                             .enter().append("text")
                             .text(function (d) { return d; })
@@ -127,8 +145,8 @@
                             .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
                             .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
 
-                    var timeLabels = svg.selectAll(".timeLabel")
-                            .data(times)
+                    var timeLabels = svg.selectAll(".ageLabel")
+                            .data(ages)
                             .enter().append("text")
                             .text(function(d) { return d; })
                             .attr("x", function(d, i) { return i * gridSize; })
@@ -137,11 +155,14 @@
                             .attr("transform", "translate(" + gridSize / 2 + ", -6)")
                             .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
-                    var heatMap = svg.selectAll(".hour")
+                    var heatMap = svg.selectAll(".age")
                             .data(data)
                             .enter().append("rect")
-                            .attr("x", function(d) { return (d.hour - 1) * gridSize; })
-                            .attr("y", function(d) { return (d.day - 1) * gridSize; })
+                            .attr("x", function(d) { return (d.age/5) * gridSize; })
+                            .attr("y", function(d) { if(d.sex == 1)
+                                                       return (2 * (d.year - minYear)) * gridSize;
+                                                     else
+                                                        return (2 * (d.year - minYear)+1) * gridSize; })
                             .attr("rx", 4)
                             .attr("ry", 4)
                             .attr("class", "hour bordered")
@@ -150,10 +171,12 @@
                             .style("fill", colors[0]);
 
                     heatMap.transition().duration(1000)
-                            .style("fill", function(d) { return colorScale(d.value); });
+                            .style("fill", function(d) { return colorScale(d.people); });
 
-                    heatMap.append("title").text(function(d) { return d.value; });
+                    heatMap.append("title").text(function(d) { return d.people; });
 
+
+                    //Legend
                     var legend = svg.selectAll(".legend")
                             .data([0].concat(colorScale.quantiles()), function(d) { return d; })
                             .enter().append("g")

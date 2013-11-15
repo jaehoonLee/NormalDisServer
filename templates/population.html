@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-             <a class="navbar-brand" href="#">SWMaestro Project</a>
+            <a class="navbar-brand" href="http://localhost:8000">SWMaestro Project</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -159,13 +159,13 @@
         var age1 = d3.max(data, function (d) {
                     return d.age;
                 }),
-        year0 = d3.min(data, function (d) {
+                year0 = d3.min(data, function (d) {
                     return d.year;
                 }),
-        year1 = d3.max(data, function (d) {
+                year1 = d3.max(data, function (d) {
                     return d.year;
                 }),
-        year = year1;
+                year = year1;
 
 
         // Update the scale domains.
@@ -227,11 +227,11 @@
                 });
 
         // Add labels to show birthyear.
-    {#        birthyear.append("text")#}
-    {#                .attr("y", height - 4)#}
-    {#                .text(function (birthyear) {#}
-    {#                    return birthyear;#}
-    {#                });#}
+        {#        birthyear.append("text")#}
+        {#                .attr("y", height - 4)#}
+        {#                .text(function (birthyear) {#}
+        {#                    return birthyear;#}
+        {#                });#}
 
         var diff = 10;
         // Add labels to show age (separate; not animated).
@@ -285,22 +285,22 @@
                     });
         }
 
-{#        d3.select(".run").on("click", function(evt)#}
-{#        {#}
-{#            callback = function()#}
-{#            {#}
-{#                year = Math.max(year0, year - 1);#}
-{#                update();#}
-{#                if(year != 1850)#}
-{#                {#}
-{#                    setTimeout(callback, 2000);#}
-{#                }else#}
-{#                {#}
-{##}
-{#                }#}
-{#            }#}
-{#            setTimeout(callback, 1000);#}
-{#        })#}
+        {#        d3.select(".run").on("click", function(evt)#}
+        {#        {#}
+        {#            callback = function()#}
+        {#            {#}
+        {#                year = Math.max(year0, year - 1);#}
+        {#                update();#}
+        {#                if(year != 1850)#}
+        {#                {#}
+        {#                    setTimeout(callback, 2000);#}
+        {#                }else#}
+        {#                {#}
+        {##}
+        {#                }#}
+        {#            }#}
+        {#            setTimeout(callback, 1000);#}
+        {#        })#}
     });
 </script>
 <script src="{{ STATIC_URL }}Main.js"></script>
