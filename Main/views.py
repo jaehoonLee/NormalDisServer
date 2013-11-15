@@ -24,7 +24,7 @@ def detail(request, citynum):
     for file in listdir(FolderPath):
         CityList.append(file)
     filename = listdir(FolderPath)[int(citynum)]
-    DataURL = "http://127.0.0.1:8000" + settings.STATIC_URL + "Datas/" + filename
+    DataURL = settings.HOST + settings.STATIC_URL + "Datas/" + filename
 
     return render_to_response('population.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
 
@@ -35,7 +35,7 @@ def heatMap(request, citynum):
     for file in listdir(FolderPath):
         CityList.append(file)
     filename = listdir(FolderPath)[int(citynum)]
-    DataURL = "http://127.0.0.1:8000" + settings.STATIC_URL + "Datas/" + filename
+    DataURL = settings.HOST + settings.STATIC_URL + "Datas/" + filename
 
     return render_to_response('heatMap.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
 
@@ -46,7 +46,7 @@ def stackedBar(request, citynum):
     for file in listdir(FolderPath):
         CityList.append(file)
     filename = listdir(FolderPath)[int(citynum)]
-    DataURL = "http://127.0.0.1:8000" + settings.STATIC_URL + "Datas/" + filename
+    DataURL = settings.HOST + settings.STATIC_URL + "Datas/" + filename
     return render_to_response('stackedBar.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
 
 def groupBarChart(request, citynum):
@@ -56,5 +56,5 @@ def groupBarChart(request, citynum):
     for file in listdir(FolderPath):
         CityList.append(file)
     filename = listdir(FolderPath)[int(citynum)]
-    DataURL = "http://127.0.0.1:8000" + settings.STATIC_URL + "Datas/" + filename
+    DataURL = settings.HOST + settings.STATIC_URL + "Datas/" + filename
     return render_to_response('groupBarChart.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
