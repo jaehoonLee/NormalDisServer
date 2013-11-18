@@ -77,7 +77,7 @@
 </style>
 <body>
 <!-- Bootstrap core CSS -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
 <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
 <link href="{{ STATIC_URL }}css/bootstrap-theme.min.css" rel="stylesheet">
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
@@ -133,161 +133,15 @@
         </p>
     </div>
     </br>
+    <script src="{{ STATIC_URL }}DataCooking/DataCooking.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
+        config = {
+            width : 1050,
+            height : 500,
+            dataSource : '{{DataURL}}'
+        }
 
-        var margin = {top: 20, right: 0, bottom: 30, left: 30},
-                width = 1100 ,
-                height = 500;
-
-        var x = d3.scale.ordinal()
-                .rangeRoundBands([0, width], .1);
-
-        var y = d3.scale.linear()
-                .rangeRound([height, 0]);
-
-        var color = d3.scale.ordinal()
-                .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-        var xAxis = d3.svg.axis()
-                .scale(x)
-                .orient("bottom");
-
-        var yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left")
-                .tickFormat(d3.format(".2s"));
-
-        var svg = d3.select(".container").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-{#        d3.csv("/static/stackedBar.csv", function(error, data) {#}
-        d3.csv("{{ DataURL }}", function(error, data) {
-
-            ageKey={};
-            yearKey={};
-            yearsKey={};
-            data.forEach(function(d)
-            {
-                ageKey[d.age] = d.year;
-                yearsKey[d.year] = d.age
-                yearKey[d.year + ', 남자'] = d.age;
-                yearKey[d.year + ', 여자'] = d.age;
-
-                d.age = +d.age
-                d.sex = +d.sex;
-                d.people = +d.people;
-
-            })
-            ageNames = Object.keys(ageKey);
-            yearNames = Object.keys(yearKey);
-            years = Object.keys(yearsKey);
-
-            color.domain(ageNames);
-
-            convertData = [];
-            years.forEach(function(year)
-                {
-                    people1 = {}
-                    people2 = {}
-                    data.forEach(function(d)
-                        {
-
-                            if(d.year == year)
-                            {
-{#                                console.log(d.sex + " " + d.age + " " + d.people);#}
-                                if(d.sex == 1)
-                                    people1[d.age] = d.people
-                                else
-                                    people2[d.age] = d.people
-                            }
-
-{#                                        .push({name: d.age, value: d.people});#}
-                        }
-                    );
-
-                    convertData.push({year:year + ', 남자', value:people1})
-                    convertData.push({year:year + ', 여자', value:people2})
-                }
-            );
-
-            convertData.forEach(function(d) {
-                var y0 = 0;
-                d.ages = color.domain().map(function(age) {
-                console.log(age + " " + +d.value[age]);
-                return {name: age, y0: y0, y1: y0 += +d.value[age]}; });
-                d.total = d.ages[d.ages.length - 1].y1;
-            });
-
-
-            convertData.sort(function(a, b) { return b.total - a.total; });
-
-            x.domain(yearNames.map(function(d) { return d; }));
-            y.domain([0, d3.max(convertData, function(d) { return d.total; })]);
-
-            svg.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(xAxis);
-
-            svg.append("g")
-                    .attr("class", "y axis")
-                    .call(yAxis)
-                    .append("text")
-                    .attr("transform", "rotate(-90)")
-                    .attr("y", 6)
-                    .attr("dy", ".71em")
-                    .style("text-anchor", "end")
-                    .text("Population");
-
-
-
-
-            //Put Data
-            var state = svg.selectAll(".state")
-                    .data(convertData)
-                    .enter().append("g")
-                    .attr("class", "g")
-                    .attr("transform", function(d) { return "translate(" + x(d.year) + ",0)"; });
-
-            state.selectAll("rect")
-                    .data(function(d) { return d.ages; })
-                    .enter().append("rect")
-                    .attr("width", x.rangeBand() * 2 / 3)
-                    .attr("y", function(d) {
-                        console.log(d.y1)
-
-                        return y(d.y1); })
-                    .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-                    .style("fill", function(d) { return color(d.name); });
-
-
-
-
-
-
-            var legend = svg.selectAll(".legend")
-                    .data(color.domain().slice().reverse())
-                    .enter().append("g")
-                    .attr("class", "legend")
-                    .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-            legend.append("rect")
-                    .attr("x", width - 18)
-                    .attr("width", 18)
-                    .attr("height", 18)
-                    .style("fill", color);
-
-            legend.append("text")
-                    .attr("x", width - 24)
-                    .attr("y", 9)
-                    .attr("dy", ".35em")
-                    .style("text-anchor", "end")
-                    .text(function(d) { return d; });
-
-        });
+        drawChart('StackedBarChart', config);
     </script>
 </div>

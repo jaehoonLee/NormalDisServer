@@ -1,200 +1,99 @@
-    <!DOCTYPE html>
-    <meta charset="utf-8">
-    <html>
-    <head>
-        <style>
-            rect.bordered {
-                stroke: #E6E6E6;
-                stroke-width:2px;
-            }
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <style>
+        rect.bordered {
+            stroke: #E6E6E6;
+            stroke-width:2px;
+        }
 
-            text.mono {
-                font-size: 9pt;
-                font-family: Consolas, courier;
-                fill: #aaa;
-            }
+        text.mono {
+            font-size: 9pt;
+            font-family: Consolas, courier;
+            fill: #aaa;
+        }
 
-            text.axis-workweek {
-                fill: #000;
-            }
+        text.axis-workweek {
+            fill: #000;
+        }
 
-            text.axis-worktime {
-                fill: #000;
-            }
-        </style>
-        <script src="http://d3js.org/d3.v3.js"></script>
-    </head>
-    <body>
-    <!-- Bootstrap core CSS -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/bootstrap-theme.min.css" rel="stylesheet">
-    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+        text.axis-worktime {
+            fill: #000;
+        }
+    </style>
+    <script src="http://d3js.org/d3.v3.js"></script>
+</head>
+<body>
+<!-- Bootstrap core CSS -->
+<script src="http://code.jquery.com/jquery.js"></script>
+<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ STATIC_URL }}css/bootstrap-theme.min.css" rel="stylesheet">
+<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 
-    <div class="container" id="container">
+<div class="container" id="container">
 
-        <!-- Static navbar -->
-        <div class="navbar navbar-default">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://localhost:8000/">SWMaestro Project</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    {#                <li><a href="#">Link</a></li>#}
-                    {#                <li class="dropdown">#}
-                    {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
-                    {#                    <ul ㅠclass="dropdown-menu">#}
-                    {#                        <li><a href="#">Action</a></li>#}
-                    {#                        <li><a href="#">Another action</a></li>#}
-                    {#                        <li><a href="#">Something else here</a></li>#}
-                    {#                        <li class="divider"></li>#}
-                    {#                        <li class="dropdown-header">Nav header</li>#}
-                    {#                        <li><a href="#">Separated link</a></li>#}
-                    {#                        <li><a href="#">One more separated link</a></li>#}
-                    {#                    </ul>#}
-                    {#                </li>#}
-                </ul>
-                {#            <ul class="nav navbar-nav navbar-right">#}
-                {#                <li class="active"><a href="./">Default</a></li>#}
-                {#                <li><a href="../navbar-static-top/">Static top</a></li>#}
-                {#                <li><a href="../navbar-fixed-top/">Fixed top</a></li>#}
-                {#            </ul>#}
-            </div>
-            <!--/.nav-collapse -->
+    <!-- Static navbar -->
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://localhost:8000/">SWMaestro Project</a>
         </div>
-
-        <!-- Main component for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <h1>Seoul Population</h1>
-
-            <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리</p>
-
-            <p>
-                {% for city in CityList %}
-                    <a class="btn btn-lg btn-primary run" id="run" href="/heatMap/{{forloop.counter0}}">{{city}}</a>
-                    {#            <a class="btn btn-lg btn-primary run" id="run" onclick="return run()">{{city}} </a>#}
-                {% endfor %}
-            </p>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {#                <li><a href="#">Link</a></li>#}
+                {#                <li class="dropdown">#}
+                {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
+                {#                    <ul ㅠclass="dropdown-menu">#}
+                {#                        <li><a href="#">Action</a></li>#}
+                {#                        <li><a href="#">Another action</a></li>#}
+                {#                        <li><a href="#">Something else here</a></li>#}
+                {#                        <li class="divider"></li>#}
+                {#                        <li class="dropdown-header">Nav header</li>#}
+                {#                        <li><a href="#">Separated link</a></li>#}
+                {#                        <li><a href="#">One more separated link</a></li>#}
+                {#                    </ul>#}
+                {#                </li>#}
+            </ul>
+            {#            <ul class="nav navbar-nav navbar-right">#}
+            {#                <li class="active"><a href="./">Default</a></li>#}
+            {#                <li><a href="../navbar-static-top/">Static top</a></li>#}
+            {#                <li><a href="../navbar-fixed-top/">Fixed top</a></li>#}
+            {#            </ul>#}
         </div>
-    <!-- /container -->
-    <div id="chart"></div>
+        <!--/.nav-collapse -->
     </div>
 
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Seoul Population</h1>
 
-    <script type="text/javascript">
-        var margin = { top: 50, right: 0, bottom: 100, left: 170 },
-                width = 960,
-                height = 430,
-                gridSize = Math.floor(width / 24),
-                legendElementWidth = gridSize*2,
-                buckets = 100000,
-                colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
-                days = [],
-                ages = ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95"];
+        <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리</p>
 
-                //change to number
-{#        d3.csv("/static/population.csv",#}
-    d3.csv('{{ DataURL }}',
-                function(d) {
-                    return {
-                        year: +d.year,
-                        age: +d.age,
-                        sex: +d.sex,
-                        people: +d.people
-                    };
-                },
-                function(error, data) {
+        <p>
+            {% for city in CityList %}
+                <a class="btn btn-lg btn-primary run" id="run" href="/heatMap/{{forloop.counter0}}">{{city}}</a>
+                {#            <a class="btn btn-lg btn-primary run" id="run" onclick="return run()">{{city}} </a>#}
+            {% endfor %}
+        </p>
+    </div>
+    <!-- /container -->
+    <div id="chart"></div>
+</div>
 
-                    day1 = {}
-                    minYear = d3.min(data, function(d){
-                        if(d.sex == 1)
-                            day1[d.year + ' 남자'] = d.age;
-                        else
-                            day1[d.year + ' 여자'] = d.age;
-                        return d.year;})
-                    buckets = d3.max(data, function(d){ return d.people}) / 2
-                    console.log(buckets)
-
-                    for(var key in day1)
-                    {
-                        days.push(key)
-                    }
-
-                    var colorScale = d3.scale.quantile()
-                            .domain([0, buckets - 1, d3.max(data, function (d) { return d.people; })])
-                            .range(colors);
-
-                    var svg = d3.select("#chart").append("svg")
-                            .attr("width", width + margin.left + margin.right)
-                            .attr("height", height + margin.top + margin.bottom)
-                            .append("g")
-                            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-                    var yearLabels = svg.selectAll(".dayLabel")
-                            .data(days)
-                            .enter().append("text")
-                            .text(function (d) { return d; })
-                            .attr("x", 0)
-                            .attr("y", function (d, i) { return i * gridSize; })
-                            .style("text-anchor", "end")
-                            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-                            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
-
-                    var timeLabels = svg.selectAll(".ageLabel")
-                            .data(ages)
-                            .enter().append("text")
-                            .text(function(d) { return d; })
-                            .attr("x", function(d, i) { return i * gridSize; })
-                            .attr("y", 0)
-                            .style("text-anchor", "middle")
-                            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-                            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
-
-                    var heatMap = svg.selectAll(".age")
-                            .data(data)
-                            .enter().append("rect")
-                            .attr("x", function(d) { return (d.age/5) * gridSize; })
-                            .attr("y", function(d) { if(d.sex == 1)
-                                                       return (2 * (d.year - minYear)) * gridSize;
-                                                     else
-                                                        return (2 * (d.year - minYear)+1) * gridSize; })
-                            .attr("rx", 4)
-                            .attr("ry", 4)
-                            .attr("class", "hour bordered")
-                            .attr("width", gridSize)
-                            .attr("height", gridSize)
-                            .style("fill", colors[0]);
-
-                    heatMap.transition().duration(1000)
-                            .style("fill", function(d) { return colorScale(d.people); });
-
-                    heatMap.append("title").text(function(d) { return d.people; });
-
-
-                    //Legend
-                    var legend = svg.selectAll(".legend")
-                            .data([0].concat(colorScale.quantiles()), function(d) { return d; })
-                            .enter().append("g")
-                            .attr("class", "legend");
-
-                    legend.append("rect")
-                            .attr("x", function(d, i) { return legendElementWidth * i; })
-                            .attr("y", height)
-                            .attr("width", legendElementWidth)
-                            .attr("height", gridSize / 2)
-                            .style("fill", function(d, i) { return colors[i]; });
-
-                    legend.append("text")
-                            .attr("class", "mono")
-                            .text(function(d) { return "≥ " + Math.round(d); })
-                            .attr("x", function(d, i) { return legendElementWidth * i; })
-                            .attr("y", height + gridSize);
-                });
-    </script>
-    </body>
-    </html>
+<script src="{{ STATIC_URL }}DataCooking/DataCooking.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript">
+    config = {
+        width : 960,
+        height : 430,
+        dataSource : '{{DataURL}}'
+    }
+    drawChart('HeatMap', config);
+</script>
+</body>
+</html>
