@@ -136,12 +136,19 @@
     <script src="{{ STATIC_URL }}DataCooking/DataCooking.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
-        config = {
-            width : 960,
-            height : 500,
-            dataSource : '{{DataURL}}'
-        }
-        drawChart('GroupBarChart', config);
+        var groupbar_config = {
+        'panel' : '.container',
+        'margin': {top: 20, right: 20, bottom: 30, left: 100},
+        'width': 960,
+        'height': 430,
+        'xAxis': {range: 'ordinal', orient : 'bottom'},
+        'yAxis': {range : 'linear', orient : 'left' , tickFormat : ".2s"},
+        'dataSource' : '{{DataURL}}', //
+       // 'xData': 'Longitude',
+       // 'yData': 'Latitude',
+        'color': {tool:["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"], 'Data' : 'K'} // ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]
+    };
+        drawChart('GroupBarChart', groupbar_config);
     </script>
     </br>
 </div>

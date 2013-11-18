@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^heatMap/(\d{1,2})/$', heatMap),
     url(r'^stackedBar/(\d{1,2})/$', stackedBar),
     url(r'^groupBarChart/(\d{1,2})/$', groupBarChart),
+    url(r'^kmeans/(\d{1,2})/$', kmeans),
     # url(r'^Population/', include('Population.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

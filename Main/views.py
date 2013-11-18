@@ -58,3 +58,13 @@ def groupBarChart(request, citynum):
     filename = listdir(FolderPath)[int(citynum)]
     DataURL = settings.HOST + settings.STATIC_URL + "Datas/" + filename
     return render_to_response('groupBarChart.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))
+
+def kmeans(request, citynum):
+    #Read File From Folder
+    FolderPath = settings.STATICFILES_DIRS[0] + '/KMeansDatas/'
+    CityList = []
+    for file in listdir(FolderPath):
+        CityList.append(file)
+    filename = listdir(FolderPath)[int(citynum)]
+    DataURL = settings.HOST + settings.STATIC_URL + "KMeansDatas/" + filename
+    return render_to_response('kmeans.html', RequestContext(request, {'CityList': CityList, 'DataURL' : DataURL}))

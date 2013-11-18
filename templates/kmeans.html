@@ -96,38 +96,20 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                {#                <li class="active"><a href="#">Seoul All</a></li>#}
-                {#                <li><a href="#">Seoul Part</a></li>#}
-                {#                <li><a href="#">Link</a></li>#}
-                {#                <li class="dropdown">#}
-                {#                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>#}
-                {#                    <ul ㅠclass="dropdown-menu">#}
-                {#                        <li><a href="#">Action</a></li>#}
-                {#                        <li><a href="#">Another action</a></li>#}
-                {#                        <li><a href="#">Something else here</a></li>#}
-                {#                        <li class="divider"></li>#}
-                {#                        <li class="dropdown-header">Nav header</li>#}
-                {#                        <li><a href="#">Separated link</a></li>#}
-                {#                        <li><a href="#">One more separated link</a></li>#}
-                {#                    </ul>#}
-                {#                </li>#}
+
             </ul>
-            {#            <ul class="nav navbar-nav navbar-right">#}
-            {#                <li class="active"><a href="./">Default</a></li>#}
-            {#                <li><a href="../navbar-static-top/">Static top</a></li>#}
-            {#                <li><a href="../navbar-fixed-top/">Fixed top</a></li>#}
-            {#            </ul>#}
+
         </div>
         <!--/.nav-collapse -->
     </div>
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <h1>Stacked Bar Chart</h1>
+        <h1>Kmeans Scatter plot Chart</h1>
         <p>서울시 인구 정보를 바탕으로 하둡 데이터 처리</p>
         <p>
             {% for city in CityList %}
-                <a class="btn btn-lg btn-primary run" id="run" href="/stackedBar/{{forloop.counter0}}">{{city}}</a>
+                <a class="btn btn-lg btn-primary run" id="run" href="/kmeans/{{forloop.counter0}}">{{city}}</a>
                 {#            <a class="btn btn-lg btn-primary run" id="run" onclick="return run()">{{city}} </a>#}
             {% endfor %}
         </p>
@@ -136,17 +118,22 @@
     <script src="{{ STATIC_URL }}DataCooking/DataCooking.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script>
-        var stackbar_config = {
+        var kmeans_config = {
         'panel' : '.container',
-        'width' : 1050,
-        'height' : 500,
         'margin': {top: 20, right: 20, bottom: 30, left: 70},
-        'xAxis': {range : 'ordinal', orient : 'bottom'},
-        'yAxis': {range : 'linear', orient : 'left', tickFormat : '.2s' },
+        'width': 1020,
+        'height': 500,
+        'xAxis': {range : 'linear', orient : 'bottom'},
+        'yAxis': {range : 'linear', orient : 'left' },
         'dataSource' : '{{DataURL}}', //
-        'color': {tool: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}
-    }
-
-        drawChart('StackedBarChart', stackbar_config);
+        'xData': 'Longitude',
+        'yData': 'Latitude',
+        'color': {tool: 'category10', Data : 'K'}
+        //["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58", "#000000"]
+    };
+    drawChart('KMeansChart', kmeans_config);
     </script>
+    </br>
+    </br>
+    </br>
 </div>

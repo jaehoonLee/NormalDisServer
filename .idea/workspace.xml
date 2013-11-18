@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5c3fa52-d399-480b-ba06-1c2c35495fb7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Files/DataCooking/DataCooking.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Files/DataCooking/FormatConverter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Files/DataCooking/Status.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Files/visual05.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Files/KMeansDatas/datadh.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Files/KMeansDatas/dataeq.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/kmeans.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/DataCooking/DataCooking.js" afterPath="$PROJECT_DIR$/Files/DataCooking/DataCooking.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Files/DataCooking/README.md" afterPath="$PROJECT_DIR$/Files/DataCooking/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/groupBarChart.html" afterPath="$PROJECT_DIR$/templates/groupBarChart.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/heatMap.html" afterPath="$PROJECT_DIR$/templates/heatMap.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/population.html" afterPath="$PROJECT_DIR$/templates/population.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/stackedBar.html" afterPath="$PROJECT_DIR$/templates/stackedBar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Population/urls.py" afterPath="$PROJECT_DIR$/Population/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main/views.py" afterPath="$PROJECT_DIR$/Main/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NormalDisServer.iws" />
@@ -37,16 +40,7 @@
       <file leaf-file-name="groupBarChart.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/groupBarChart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="56" selection-start="1314" selection-end="1314" vertical-scroll-proportion="-7.5" vertical-offset="1005" max-vertical-offset="2280">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="heatMap.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/heatMap.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="56" selection-start="578" selection-end="578" vertical-scroll-proportion="-5.0" vertical-offset="300" max-vertical-offset="1560">
+            <state line="145" column="24" selection-start="4707" selection-end="4719" vertical-scroll-proportion="-4.625" vertical-offset="2064" max-vertical-offset="2385">
               <folding />
             </state>
           </provider>
@@ -55,7 +49,40 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="0" selection-start="972" selection-end="1028" vertical-scroll-proportion="-8.75" vertical-offset="660" max-vertical-offset="2040">
+            <state line="128" column="35" selection-start="5055" selection-end="5055" vertical-scroll-proportion="-9.0" vertical-offset="1704" max-vertical-offset="2100">
+              <folding>
+                <element signature="n#style#0;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#a#1;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="heatMap.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/heatMap.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="29" selection-start="3602" selection-end="3602" vertical-scroll-proportion="-3.75" vertical-offset="1275" max-vertical-offset="1620">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Main/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="39" selection-start="2621" selection-end="2621" vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="1080">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="kmeans.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/kmeans.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="122" column="58" selection-start="2991" selection-end="2991" vertical-scroll-proportion="-3.9166667" vertical-offset="1736" max-vertical-offset="2160">
               <folding />
             </state>
           </provider>
@@ -64,7 +91,7 @@
       <file leaf-file-name="population.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/population.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="56" selection-start="745" selection-end="745" vertical-scroll-proportion="-1.875" vertical-offset="690" max-vertical-offset="4710">
+            <state line="111" column="10" selection-start="3697" selection-end="3697" vertical-scroll-proportion="-6.875" vertical-offset="1500" max-vertical-offset="4710">
               <folding />
             </state>
           </provider>
@@ -73,49 +100,32 @@
       <file leaf-file-name="DataCooking.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Files/DataCooking/DataCooking.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="0" selection-start="9961" selection-end="9961" vertical-scroll-proportion="-9.546875" vertical-offset="7300" max-vertical-offset="7620">
+            <state line="593" column="31" selection-start="21423" selection-end="21423" vertical-scroll-proportion="2.3699634" vertical-offset="7601" max-vertical-offset="11850">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="heatMap.tsv" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Files/heatMap.tsv">
+      <file leaf-file-name="population.csv" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/population.csv">
           <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="16" selection-start="454" selection-end="454" vertical-scroll-proportion="-21.11111" vertical-offset="0" max-vertical-offset="675">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="36.074074" vertical-offset="974" max-vertical-offset="1305">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-              <folding />
-            </state>
+      <file leaf-file-name="datadh.csv" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Files/KMeansDatas/datadh.csv">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Status.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Files/DataCooking/Status.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="23" selection-start="0" selection-end="23" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="20190">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FormatConverter.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Files/DataCooking/FormatConverter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="1" selection-start="495" selection-end="495" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-              <folding>
-                <element signature="n#!!doc;n#convertFormat#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -123,7 +133,7 @@
       <file leaf-file-name="stackedBar.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/stackedBar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="56" selection-start="1312" selection-end="1312" vertical-scroll-proportion="-9.083333" vertical-offset="967" max-vertical-offset="2280">
+            <state line="143" column="7" selection-start="4560" selection-end="4560" vertical-scroll-proportion="-7.75" vertical-offset="1959" max-vertical-offset="2355">
               <folding />
             </state>
           </provider>
@@ -147,27 +157,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Files/stackedBar.csv" />
-        <option value="$PROJECT_DIR$/Files/heatMap.tsv" />
         <option value="$PROJECT_DIR$/Files/groupBar.csv" />
         <option value="$PROJECT_DIR$/Files/population.csv" />
         <option value="$PROJECT_DIR$/Files/Datas/서울" />
-        <option value="$PROJECT_DIR$/Main/views.py" />
         <option value="$PROJECT_DIR$/Population/settings.py" />
         <option value="$PROJECT_DIR$/Files/DataCooking/main.js" />
         <option value="$PROJECT_DIR$/Files/DataCooking/Status.js" />
-        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/templates/population.html" />
+        <option value="$PROJECT_DIR$/Files/DataCooking/FormatConverter.js" />
+        <option value="$PROJECT_DIR$/templates/stackedBar.html" />
         <option value="$PROJECT_DIR$/templates/groupBarChart.html" />
         <option value="$PROJECT_DIR$/templates/heatMap.html" />
-        <option value="$PROJECT_DIR$/templates/population.html" />
-        <option value="$PROJECT_DIR$/templates/stackedBar.html" />
-        <option value="$PROJECT_DIR$/Files/DataCooking/FormatConverter.js" />
         <option value="$PROJECT_DIR$/Files/DataCooking/DataCooking.js" />
+        <option value="$PROJECT_DIR$/Population/urls.py" />
+        <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/Main/views.py" />
+        <option value="$PROJECT_DIR$/templates/kmeans.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="x" value="-1" />
+    <option name="y" value="24" />
     <option name="width" value="1280" />
     <option name="height" value="730" />
   </component>
@@ -239,7 +250,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NormalDisServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NormalDisServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NormalDisServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NormalDisServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KMeansDatas" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -280,6 +323,14 @@
     <option name="myPythonConsoleState">
       <PyConsoleSettings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Files/KMeansDatas" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Files/KMeansDatas" />
+    </key>
   </component>
   <component name="RunManager" selected="Django server.NormalDisServer">
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -520,19 +571,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="730" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1" y="24" width="1280" height="730" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25769854" sideWeight="0.6704918" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25769854" sideWeight="0.6704918" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3295082" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -543,6 +594,27 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25769854" sideWeight="0.6704918" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3295082" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -557,96 +629,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="setting Host Added" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Files/populationTest.csv">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="14" selection-start="659" selection-end="1302" vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="8640" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Files/population.csv">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="2" selection-start="23" selection-end="258" vertical-scroll-proportion="13.333333" vertical-offset="585" max-vertical-offset="1305" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="115" selection-start="901" selection-end="908" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="930" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Files/groupBar.csv">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="34" selection-start="429" selection-end="429" vertical-scroll-proportion="-3.3333333" vertical-offset="0" max-vertical-offset="180" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Files/stackedBar.csv">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="46" selection-start="2806" selection-end="2806" vertical-scroll-proportion="-28.333334" vertical-offset="0" max-vertical-offset="855" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Files/Datas/서울">
-      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="200" column="14" selection-start="3333" selection-end="3333" vertical-scroll-proportion="-111.111115" vertical-offset="0" max-vertical-offset="3090" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="358">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="0" selection-start="972" selection-end="1028" vertical-scroll-proportion="-8.75" vertical-offset="660" max-vertical-offset="2040">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/groupBarChart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="56" selection-start="1314" selection-end="1314" vertical-scroll-proportion="-7.5" vertical-offset="1005" max-vertical-offset="2280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/heatMap.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="56" selection-start="578" selection-end="578" vertical-scroll-proportion="-5.0" vertical-offset="300" max-vertical-offset="1560">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/population.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="56" selection-start="745" selection-end="745" vertical-scroll-proportion="-1.875" vertical-offset="690" max-vertical-offset="4710">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stackedBar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="56" selection-start="1312" selection-end="1312" vertical-scroll-proportion="-9.083333" vertical-offset="967" max-vertical-offset="2280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Files/heatMap.tsv">
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
@@ -673,9 +660,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Population/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="34" selection-start="537" selection-end="537" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="7" selection-start="0" selection-end="7" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="358">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/DataCooking/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="44" selection-start="3248" selection-end="3845" vertical-scroll-proportion="0.0" vertical-offset="1575" max-vertical-offset="2625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="35" selection-start="5055" selection-end="5055" vertical-scroll-proportion="-9.0" vertical-offset="1704" max-vertical-offset="2100">
+          <folding>
+            <element signature="n#style#0;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#1;n#div#3;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/KMeansDatas/datadh.csv">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="20190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="39" selection-start="2621" selection-end="2621" vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="1080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Files/population.csv">
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="36.074074" vertical-offset="974" max-vertical-offset="1305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/population.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="111" column="10" selection-start="3697" selection-end="3697" vertical-scroll-proportion="-6.875" vertical-offset="1500" max-vertical-offset="4710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stackedBar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="7" selection-start="4560" selection-end="4560" vertical-scroll-proportion="-7.75" vertical-offset="1959" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/kmeans.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="58" selection-start="2991" selection-end="2991" vertical-scroll-proportion="-3.9166667" vertical-offset="1736" max-vertical-offset="2160">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/groupBarChart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="145" column="24" selection-start="4707" selection-end="4719" vertical-scroll-proportion="-4.625" vertical-offset="2064" max-vertical-offset="2385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/heatMap.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="29" selection-start="3602" selection-end="3602" vertical-scroll-proportion="-3.75" vertical-offset="1275" max-vertical-offset="1620">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Files/DataCooking/DataCooking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="0" selection-start="9961" selection-end="9961" vertical-scroll-proportion="-9.546875" vertical-offset="7300" max-vertical-offset="7620">
+        <state line="593" column="31" selection-start="21423" selection-end="21423" vertical-scroll-proportion="2.3699634" vertical-offset="7601" max-vertical-offset="11850">
           <folding />
         </state>
       </provider>
