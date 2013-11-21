@@ -144,9 +144,10 @@
         'xAxis': {range: 'ordinal', orient : 'bottom'},
         'yAxis': {range : 'linear', orient : 'left' , tickFormat : ".2s"},
         'dataSource' : '{{DataURL}}', //
-       // 'xData': 'Longitude',
-       // 'yData': 'Latitude',
-        'color': {tool:["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"], 'Data' : 'K'} // ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]
+        'xData': 'year',
+        'yData': 'people',
+        'color': {tool:["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"], 'Data' : 'K'}, // ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]
+        'format' : 'csv'
     };
         drawChart('GroupBarChart', groupbar_config);
     </script>

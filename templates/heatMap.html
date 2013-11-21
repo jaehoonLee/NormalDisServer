@@ -93,8 +93,9 @@
         'margin': { top: 50, right: 0, bottom: 100, left: 170 },
         'width': 960,
         'height': 430,
-        'dataSource' :'{{DataURL}}', //
-        'color': {tool: 'colorbrewer', type : 'YlGnBu', size : 9}    //정확하게 type을 명시해주어야 color값이 받아진다.
+        'dataSource' : '{{DataURL}}',
+        'color': {tool: 'colorbrewer', type : 'YlGnBu', size : 9},
+        'format' : 'csv'//정확하게 type을 명시해주어야 color값이 받아진다.
         //["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58", "#000000"]
     };
     drawChart('HeatMap', heatmap_config);

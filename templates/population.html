@@ -47,7 +47,7 @@
 </style>
 <body>
 <!-- Bootstrap core CSS -->
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
 <link href="{{ STATIC_URL }}css/bootstrap-theme.min.css" rel="stylesheet">
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
@@ -107,7 +107,8 @@
     config = {
             width : 1140,
             height : 500,
-            dataSource : '{{DataURL}}'
+            dataSource : '{{DataURL}}',
+            'format' : 'csv'
     }
     drawChart('PopulationPyramid', config);
 </script>

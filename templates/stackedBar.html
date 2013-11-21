@@ -143,10 +143,10 @@
         'margin': {top: 20, right: 20, bottom: 30, left: 70},
         'xAxis': {range : 'ordinal', orient : 'bottom'},
         'yAxis': {range : 'linear', orient : 'left', tickFormat : '.2s' },
-        'dataSource' : '{{DataURL}}', //
-        'color': {tool: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]}
-    }
-
+        'dataSource' : '{{DataURL}}',
+        'color': {tool: ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]},
+        'format' : 'csv'
+        }
         drawChart('StackedBarChart', stackbar_config);
     </script>
 </div>
