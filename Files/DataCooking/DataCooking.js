@@ -1,7 +1,8 @@
 //Import Files
 STATIC_URL = "http://127.0.0.1:8000/static/DataCooking/";
 
-document.write("<script type=\"text/javascript\" src=\"http://d3js.org/d3.v3.min.js\"></script>");
+document.write("<script src=\"http://d3js.org/d3.v3.min.js\"></script>");
+document.write("<script src=\"http://d3js.org/colorbrewer.v1.min.js\"></script>");
 document.write("<script type=\"text/javascript\" src=" + "\"" + STATIC_URL + "Status.js\"" + "></script>");
 document.write("<script type=\"text/javascript\" src=" + "\"" + STATIC_URL + "FormatConverter.js\"" + "></script>");
 
@@ -21,16 +22,83 @@ function drawChart(chartname, config)
         case 'StackedBarChart':
             getStackedBarChart(config);
             break;
+        case 'KMeansChart':
+            getKMeansChart(config);
+            break;
         default :
             break;
+    }
+
+}
+var processConfig = function (config){
+    this.config = config;
+
+    this.panel = config['panel'];
+
+    this.width = setWidth(config['width']);
+    this.height = setHeight(config['height']);
+
+    this.color;
+    this.colorTool;
+    switch(config['color']['tool']){
+        case 'category10' :
+        case 'category20' :
+        case 'category20b' :
+        case 'category20c' :
+            this.colorTool = d3.scale[config['color']['tool']]();
+            break;
+        case 'colorbrewer' :
+            this.colorTool = d3.scale.ordinal().range(d3.range(config['color']['size']));
+            this.color = colorbrewer[config['color']['type']][config['color']['size']];
+            break;
+        default :
+            this.color = config['color']['tool'];
+            this.colorTool = d3.scale.ordinal().range(config['color']['tool']);
+
+    };
+
+    this.x = d3.scale[config['xAxis']['range']]()
+        .range([0, config['width']]);
+
+    this.y = d3.scale[config['yAxis']['range']]()
+        .range([config['height'], 0]);
+
+    this.xAxis = d3.svg.axis()
+        .scale(this.x)
+        .orient(config['xAxis'].orient);
+
+    this.yAxis = d3.svg.axis()
+        .scale(this.y)
+        .orient(config['yAxis'].orient);
+
+    this.svg = d3.select(config['panel']).append("svg")
+        .attr("width", config['width'] +config['margin'].left + config['margin'].right)
+        .attr("height",config['height'] +config['margin'].top +config['margin'].bottom)
+        .append("g")
+        .attr("transform", "translate(" + config['margin'].left + "," + config['margin'].top + ")");
+
+    this.dataSource = config['dataSource'];
+    this.xData = config['xData'];
+    this.yData = config['yData'];
+    this.colorData = config['color']['Data'];
+
+    function setWidth(width){
+        if(width == undefined ){
+            width = this.panel.offsetWidth;
+        }
+        return width;
+    }
+    function setHeight(height){
+        if(height == undefined ){
+            height = this.panel.offsetHeight;
+        }
+        return height;
     }
 
 }
 
 function getPopulation(config)
 {
-    console.log(CHART_STACKEDBARCHART);
-    convertFormat("a");
 
     var margin = {top: 20, right: 40, bottom: 30, left: 40},
         width = config.width - margin.left - margin.right,
@@ -64,7 +132,7 @@ function getPopulation(config)
         .attr("class", "title")
         .attr("dy", ".71em")
 
-    d3.csv(config.dataSource, function(error, data) {
+    d3[config.format](config.dataSource, function(error, data) {
 //d3.csv('{{ DataURL }}', function (error, data) {
 
         // Convert strings to numbers.
@@ -201,18 +269,50 @@ function getPopulation(config)
 
 function getHeatMap(config)
 {
-    var margin = { top: 50, right: 0, bottom: 100, left: 170 },
-        width = config.width,
-        height = config.height,
-        gridSize = Math.floor(width / 24),
+    var gridSize = Math.floor(config.width / 24),
         legendElementWidth = gridSize*2,
         buckets = 100000,
-        colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
         days = [],
         ages = ["0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95"];
 
-    //change to number
-    d3.csv(config.dataSource,
+    var processConfig = function (config){
+        this.config = config;
+        this.panel = config['panel'];
+        this.margin = config['margin'];
+        this.width = config['width'];
+        this.height = config['height'];
+        //this.x = d3.scale[config['xAxis']['range']]().rangeRoundBands([0, this.width], .1);
+        //this.x1 = d3.scale[config['xAxis']['range']]();
+        //this.y = d3.scale[config['yAxis']['range']]().range([this.height, 0]) //d3.scale.linear()
+        this.color;
+        this.colorTool ;
+        switch(config['color']['tool']){
+            case 'category10' :
+            case 'category20' :
+            case 'category20b' :
+            case 'category20c' :
+                this.colorTool = d3.scale[config['color']['tool']]();
+                break;
+            case 'colorbrewer' :
+                this.colorTool = d3.scale.ordinal().range(d3.range(config['color']['size']));
+                this.color = colorbrewer[config['color']['type']][config['color']['size']];
+                break;
+            default :
+                this.color = config['color']['tool'];
+                this.colorTool = d3.scale.ordinal().range(config['color']['tool']);
+
+        };
+        this.dataSource = config.dataSource;
+        //no xAxis and yAxis
+        this.svg = d3.select(this.panel).append("svg")
+            .attr("width", this.width + this.margin['left'] + this.margin['right'])
+            .attr("height", this.height + this.margin['top'] + this.margin['bottom'])
+            .append("g")
+            .attr("transform", "translate(" + this.margin['left'] + "," + this.margin['top'] + ")");
+        this.format = config.format
+    }
+    var newAxis = new processConfig(config);
+    d3[config.format](config.dataSource,
         function(d) {
             return {
                 year: +d.year,
@@ -235,16 +335,11 @@ function getHeatMap(config)
             buckets = d3.max(data, function(d){ return d.people}) / 2
 
             var colorScale = d3.scale.quantile()
-                .domain([0, buckets - 1, d3.max(data, function (d) { return d.people; })])
-                .range(colors);
+                .range(newAxis.color)
+                .domain([0, buckets - 1, d3.max(data, function (d) { return d.people; })]);
 
-            var svg = d3.select("#chart").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-            var yearLabels = svg.selectAll(".dayLabel")
+            var yearLabels = newAxis.svg.selectAll(".dayLabel")
                 .data(days)
                 .enter().append("text")
                 .text(function (d) { return d; })
@@ -254,7 +349,7 @@ function getHeatMap(config)
                 .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
                 .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
 
-            var timeLabels = svg.selectAll(".ageLabel")
+            var timeLabels = newAxis.svg.selectAll(".ageLabel")
                 .data(ages)
                 .enter().append("text")
                 .text(function(d) { return d; })
@@ -264,7 +359,7 @@ function getHeatMap(config)
                 .attr("transform", "translate(" + gridSize / 2 + ", -6)")
                 .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
-            var heatMap = svg.selectAll(".age")
+            var heatMap = newAxis.svg.selectAll(".age")
                 .data(data)
                 .enter().append("rect")
                 .attr("x", function(d) { return (d.age/5) * gridSize; })
@@ -277,8 +372,7 @@ function getHeatMap(config)
                 .attr("class", "hour bordered")
                 .attr("width", gridSize)
                 .attr("height", gridSize)
-                .style("fill", colors[0]);
-
+                .style("fill", newAxis.color[0]);
             heatMap.transition().duration(1000)
                 .style("fill", function(d) { return colorScale(d.people); });
 
@@ -286,59 +380,68 @@ function getHeatMap(config)
 
 
             //Legend
-            var legend = svg.selectAll(".legend")
+            var legend = newAxis.svg.selectAll(".legend")
                 .data([0].concat(colorScale.quantiles()), function(d) { return d; })
                 .enter().append("g")
                 .attr("class", "legend");
 
             legend.append("rect")
                 .attr("x", function(d, i) { return legendElementWidth * i; })
-                .attr("y", height)
+                .attr("y", newAxis.height)
                 .attr("width", legendElementWidth)
                 .attr("height", gridSize / 2)
-                .style("fill", function(d, i) { return colors[i]; });
+                .style("fill", function(d, i) { return newAxis.color[i]; });  //colors[i]
 
             legend.append("text")
                 .attr("class", "mono")
                 .text(function(d) { return "≥ " + Math.round(d); })
                 .attr("x", function(d, i) { return legendElementWidth * i; })
-                .attr("y", height + gridSize);
+                .attr("y", newAxis.height + gridSize);
         });
 }
 
+
 function getGroupBarChart(config)
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 100},
-        width = config.width,
-        height = config.height - margin.top - margin.bottom;
 
-    var x0 = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
+    var processConfig = function (config){
+        this.config = config;
+        this.panel = config['panel'];
+        this.margin = config['margin'];
+        this.width = config['width'];
+        this.height = config['height'];
+        this.x = d3.scale[config['xAxis']['range']]().rangeRoundBands([0, this.width], .1);
+        this.x1 = d3.scale[config['xAxis']['range']]();
+        this.y = d3.scale[config['yAxis']['range']]().range([this.height, 0]) //d3.scale.linear()
+        this.colorTool ;
+        switch(config['color']['tool']){
+            case 'category10' :
+            case 'category20' :
+            case 'category20b' :
+            case 'category20c' :
+                this.colorTool = d3.scale[config['color']['tool']]();
+                break;
+            default :
+                this.colorTool = d3.scale.ordinal().range(config['color']['tool']);
 
-    var x1 = d3.scale.ordinal();
+        };
+        this.dataSource = config.dataSource;
+        this.xAxis = d3.svg.axis()
+            .scale(this.x)
+            .orient(config['xAxis']['orient']);
+        this.yAxis = d3.svg.axis()
+            .scale(this.y)
+            .orient(config['yAxis']['orient'])
+            .tickFormat(d3.format(config['yAxis']['tickFormat']));
+        this.svg = d3.select(this.panel).append("svg")
+            .attr("width", this.width + this.margin['left'] + this.margin['right'])
+            .attr("height", this.height + this.margin['top'] + this.margin['bottom'])
+            .append("g")
+            .attr("transform", "translate(" + this.margin['left'] + "," + this.margin['top'] + ")");
 
-    var y = d3.scale.linear()
-        .range([height, 0]);
-
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-    var xAxis = d3.svg.axis()
-        .scale(x0)
-        .orient("bottom");
-
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left")
-        .tickFormat(d3.format(".2s"));
-
-    var svg = d3.select(".container").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    d3.csv(config.dataSource, function(error, data) {
+    }
+    var newAxis = new processConfig(config);
+    d3[config.format](config.dataSource, function(error, data) {
         data = convertFormat(data);
 
         var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "year"; });
@@ -347,18 +450,18 @@ function getGroupBarChart(config)
             d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
         });
 
-        x0.domain(data.map(function(d) { return d.year; }));
-        x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
-        y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
+        newAxis.x.domain(data.map(function(d) { return d.year; }));
+        newAxis.x1.domain(ageNames).rangeRoundBands([0, newAxis.x.rangeBand()]);
+        newAxis.y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
 
-        svg.append("g")
+        newAxis.svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .attr("transform", "translate(0," + newAxis.height + ")")
+            .call(newAxis.xAxis);
 
-        svg.append("g")
+        newAxis.svg.append("g")
             .attr("class", "y axis")
-            .call(yAxis)
+            .call(newAxis.yAxis)
             .append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
@@ -366,35 +469,35 @@ function getGroupBarChart(config)
             .style("text-anchor", "end")
             .text("Population");
 
-        var state = svg.selectAll(".state")
+        var state = newAxis.svg.selectAll(".state")
             .data(data)
             .enter().append("g")
             .attr("class", "g")
-            .attr("transform", function(d) { return "translate(" + x0(d.year) + ",0)"; });
+            .attr("transform", function(d) { return "translate(" + newAxis.x(d.year) + ",0)"; });
 
         state.selectAll("rect")
             .data(function(d) { return d.ages; })
             .enter().append("rect")
-            .attr("width", x1.rangeBand())
-            .attr("x", function(d) { return x1(d.name); })
-            .attr("y", function(d) { return y(d.value); })
-            .attr("height", function(d) { return height - y(d.value); })
-            .style("fill", function(d) { return color(d.name); });
+            .attr("width", newAxis.x1.rangeBand())
+            .attr("x", function(d) { return newAxis.x1(d.name); })
+            .attr("y", function(d) { return newAxis.y(d.value); })
+            .attr("height", function(d) { return newAxis.height - newAxis.y(d.value); })
+            .style("fill", function(d) { return newAxis.colorTool(d.name); });
 
-        var legend = svg.selectAll(".legend")
+        var legend = newAxis.svg.selectAll(".legend")
             .data(ageNames.slice().reverse())
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
         legend.append("rect")
-            .attr("x", width - 18)
+            .attr("x", newAxis.width - 18)
             .attr("width", 18)
             .attr("height", 18)
-            .style("fill", color);
+            .style("fill", newAxis.colorTool);
 
         legend.append("text")
-            .attr("x", width - 24)
+            .attr("x", newAxis.width - 24)
             .attr("y", 9)
             .attr("dy", ".35em")
             .style("text-anchor", "end")
@@ -405,59 +508,79 @@ function getGroupBarChart(config)
 
 function getStackedBarChart(config)
 {
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = config.width;
-    height = config.height;
+    var processConfig = function (config) {
+        this.config = config;
+        this.width = config.width;
+        this.height = config.height;
 
-    var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
+        this.x = d3.scale[config['xAxis']['range']]()
+            .rangeRoundBands([0, this.width], .1);
 
-    var y = d3.scale.linear()
-        .rangeRound([height, 0]);
+        this.y = d3.scale[config['yAxis']['range']]()
+            .rangeRound([this.height, 0]);
 
-    var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+        this.color;
+        this.colorTool;
+        switch(config['color']['tool']){
+            case 'category10' :
+            case 'category20' :
+            case 'category20b' :
+            case 'category20c' :
+                this.colorTool = d3.scale[config['color']['tool']]();
+                break;
+            case 'colorbrewer' :
+                this.colorTool = d3.scale.ordinal().range(d3.range(config['color']['size']));
+                this.color = colorbrewer[config['color']['type']][config['color']['size']];
+                break;
+            default :
+                this.color = config['color']['tool'];
+                this.colorTool = d3.scale.ordinal().range(config['color']['tool']);
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
+        };
 
-    var yAxis = d3.svg.axis()
-        .scale(y)
-        .orient("left")
-        .tickFormat(d3.format(".2s"));
+        this.dataSource = config.dataSource;
+        this.xAxis = d3.svg.axis()
+            .scale(this.x)
+            .orient(config['xAxis']['orient']);
 
-    var svg = d3.select(".container").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        this.yAxis = d3.svg.axis()
+            .scale(this.y)
+            .orient(config['yAxis']['orient'])
+            .tickFormat(d3.format(config['yAxis']['tickFormat']));
 
-    d3.csv(config.dataSource, function(error, data) {
+        this.svg = d3.select(config.panel).append("svg")
+            .attr("width", this.width + config['margin'].left + config['margin'].right)
+            .attr("height", this.height + config['margin'].top + config['margin'].bottom)
+            .append("g")
+            .attr("transform", "translate(" + config['margin'].left + "," + config['margin'].top + ")");
+
+    }
+    var newAxis = new processConfig(config);
+    d3[config.format](config.dataSource, function(error, data) {
 
         //data Converting
         data = convertFormat(data);
 
-        color.domain(d3.keys(data[0]).filter(function(key) { return key !== "year"; }));
+        newAxis.colorTool.domain(d3.keys(data[0]).filter(function(key) { return key !== "year"; }));
         data.forEach(function(d) {
             var y0 = 0;
-            d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
+            d.ages = newAxis.colorTool.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
             d.total = d.ages[d.ages.length - 1].y1;
         });
 
         data.sort(function(a, b) { return b.total - a.total; });
 
-        x.domain(data.map(function(d) { return d.year; }));
-        y.domain([0, d3.max(data, function(d) { return d.total; })]);
+        newAxis.x.domain(data.map(function(d) { return d.year; }));
+        newAxis.y.domain([0, d3.max(data, function(d) { return d.total; })]);
 
-        svg.append("g")
+        newAxis.svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .attr("transform", "translate(0," + newAxis.height + ")")
+            .call(newAxis.xAxis);
 
-        svg.append("g")
+        newAxis.svg.append("g")
             .attr("class", "y axis")
-            .call(yAxis)
+            .call(newAxis.yAxis)
             .append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 6)
@@ -465,34 +588,34 @@ function getStackedBarChart(config)
             .style("text-anchor", "end")
             .text("Population");
 
-        var state = svg.selectAll(".state")
+        var state = newAxis.svg.selectAll(".state")
             .data(data)
             .enter().append("g")
             .attr("class", "g")
-            .attr("transform", function(d) { return "translate(" + x(d.year) + ",0)"; });
+            .attr("transform", function(d) { return "translate(" + newAxis.x(d.year) + ",0)"; });
 
         state.selectAll("rect")
             .data(function(d) { return d.ages; })
             .enter().append("rect")
-            .attr("width", x.rangeBand())
-            .attr("y", function(d) { return y(d.y1); })
-            .attr("height", function(d) { return y(d.y0) - y(d.y1); })
-            .style("fill", function(d) { return color(d.name); });
+            .attr("width", newAxis.x.rangeBand())
+            .attr("y", function(d) { return newAxis.y(d.y1); })
+            .attr("height", function(d) { return newAxis.y(d.y0) - newAxis.y(d.y1); })
+            .style("fill", function(d) { return newAxis.colorTool(d.name); });
 
-        var legend = svg.selectAll(".legend")
-            .data(color.domain().slice().reverse())
+        var legend = newAxis.svg.selectAll(".legend")
+            .data(newAxis.colorTool.domain().slice().reverse())
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
         legend.append("rect")
-            .attr("x", width - 18)
+            .attr("x", newAxis.width - 18)
             .attr("width", 18)
             .attr("height", 18)
-            .style("fill", color);
+            .style("fill", newAxis.colorTool);
 
         legend.append("text")
-            .attr("x", width - 24)
+            .attr("x", newAxis.width - 24)
             .attr("y", 9)
             .attr("dy", ".35em")
             .style("text-anchor", "end")
@@ -500,3 +623,163 @@ function getStackedBarChart(config)
     });
 
 }
+
+
+function getKMeansChart(config)
+{
+    var newAxis = new processConfig(config);
+
+    d3[config.format](newAxis.dataSource, type, function (error, data) {
+
+        newAxis.x.domain(d3.extent(data, function (d) {
+//            if(d[newAxis.xData] < 0)
+//                return d[newAxis.xData] + 360;
+//            else
+           return d[newAxis.xData];
+        }));
+        newAxis.y.domain(d3.extent(data, function (d) {
+            return d[newAxis.yData];
+        }));
+        newAxis.colorTool.domain(d3.extent(data, function (d) {
+            return d[newAxis.colorData];
+        }));
+
+        newAxis.svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + newAxis.height + ")")
+            .call(newAxis.xAxis)
+            .append("text")
+            .attr("class", "label")
+            .attr("x", newAxis.width)
+            .attr("y", -6)
+            .style("text-anchor", "end")
+            .text("Longitude");
+
+        newAxis.svg.append("g")
+            .attr("class", "y axis")
+            .call(newAxis.yAxis)
+            .append("text")
+            .attr("class", "label")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text("Latitude");
+
+        newAxis.svg.selectAll(".point")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", "point")
+            .attr("r", 4)
+            .attr("cx", function (d) {
+//                if(d[newAxis.xData] < 0)
+//                    return newAxis.x(d[newAxis.xData] + 360);
+//                else
+//                    return newAxis.x(d[newAxis.xData]);
+                return newAxis.x(d[newAxis.xData]);
+            })
+            .attr("cy", function (d) {
+                return newAxis.y(d[newAxis.yData]);
+            })
+            .style("fill", function (d) {
+                return newAxis.colorTool(d[newAxis.colorData]);
+            });
+
+        var legend = newAxis.svg.selectAll(".legend")
+            .data(newAxis.colorTool.domain())
+            .enter().append("g")
+            .attr("class", "legend")
+            .attr("transform", function (d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
+
+        legend.append("rect")
+            .attr("x", newAxis.width - 18)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", newAxis.colorTool);
+
+        legend.append("text")
+            .attr("x", newAxis.width - 24)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(function (d) {
+                return d;
+            });
+    });
+    function type(d) {
+        d[newAxis.xData] = +d[newAxis.xData];
+        d[newAxis.yData] = +d[newAxis.yData];
+        return d;
+
+    }
+}
+
+//function getPieChart(config) {
+//    var config = {
+//        'panel' : '#piechart',
+//        'margin': {top: 20, right: 20, bottom: 30, left: 20},
+//        'width': 960,
+//        'height': 500,
+//        //'radius' : ,
+//
+//        'dataSource' : "dataeq.csv", // '{{DataURL}}'
+//        'pieData' : ,
+//        'color': {tool: 'category10', Data : 'Species'}
+//    };
+//    var width = 960,
+//        height = 620,
+//        radius = Math.min(width, height) / 2;
+//
+//    var color = d3.scale.category20c();
+//
+//    var arc = d3.svg.arc()
+//        .outerRadius(radius - 20)
+//        .innerRadius(0);
+//
+//    var pie = d3.layout.pie()
+//        .sort(null)
+//        .value(function(d) { return d.population; });
+//
+//    var svg = d3.select("body").append("svg")
+//        .attr("width", width)
+//        .attr("height", height)
+//        .append("g")
+//        .attr("transform", "translate(" + 0+ "," + 20 + ")");
+//
+//
+//    d3.csv("data.csv", function(error, data) {
+//
+//        data.forEach(function(d) {
+//            d.population = +d.population;
+//        });
+//
+//        var subject = svg
+//            .append("text")
+//            .attr("class", "subject")
+//            .attr("transform",  "translate(" + (width/2 -40) + "," + 0 + ")")
+//            .text("Population Chart");
+//
+//        var g = svg.selectAll(".arc")
+//            .data(pie(data))
+//            .enter().append("g")
+//            .attr("class", "arc")
+//            .attr('transform', "translate("+width/2+","+height/2+")");
+//
+//        g.append("path")
+//            .attr("d", arc)
+//            .style("fill", function(d) { return color(d.data.age); })
+//            .on("mouseover", function(){
+//                d3.select(this).style("fill", "green");})
+//            .on("mouseout", function(){d3.select(this).style("fill", function(d) { return color(d.data.age);})});
+//
+//
+//        g.append("text")
+//            .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+//            .attr("dy", ".35em")
+//            .style("text-anchor", "middle")
+//            .text(function(d) { return d.data.age; });
+//
+//    });
+//}
